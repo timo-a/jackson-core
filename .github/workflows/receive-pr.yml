@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  upload-patch:
+  receive-pr-upload-patch:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
