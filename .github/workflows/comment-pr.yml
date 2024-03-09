@@ -25,6 +25,9 @@ jobs:
           ref: ${{github.event.workflow_run.head_branch}}
           repository: ${{github.event.workflow_run.head_repository.full_name}}
 
+      - name: logit
+        run: echo ${{ github.event.workflow_run.id }}
+
       # Download the patch
       - uses: actions/download-artifact@v4
         with:
