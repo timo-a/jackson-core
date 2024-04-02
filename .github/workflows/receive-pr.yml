@@ -8,7 +8,9 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches:
-      - main
+      - master
+      - 2.[0-9]+
+      - 3.[0-9]+
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.ref }}'
