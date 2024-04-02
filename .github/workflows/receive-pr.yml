@@ -11,6 +11,7 @@ on:
       - master
       - 2.[0-9]+
       - 3.[0-9]+
+      - feature/suggestions
 
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.ref }}'
