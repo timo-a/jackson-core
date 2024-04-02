@@ -294,4 +294,107 @@ tools.jackson.core.*;version=${project.version}
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>openrewrite</id>
+      <!-- `mvn -P openrewrite org.openrewrite.maven:rewrite-maven-plugin:run` -->
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>5.23.1</version>
+            <configuration>
+              <activeRecipes>
+                <!-- common static analysis issues
+                     https://docs.openrewrite.org/recipes/staticanalysis/commonstaticanalysis -->
+                <recipe>org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet</recipe>
+                <recipe>org.openrewrite.staticanalysis.BigDecimalDoubleConstructorRecipe</recipe>
+                <recipe>org.openrewrite.staticanalysis.BigDecimalRoundingConstantsToEnums</recipe>
+                <recipe>org.openrewrite.staticanalysis.BooleanChecksNotInverted</recipe>
+                <recipe>org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase</recipe>
+                <recipe>org.openrewrite.staticanalysis.CatchClauseOnlyRethrows</recipe>
+                <recipe>org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls</recipe>
+                <recipe>org.openrewrite.staticanalysis.CovariantEquals</recipe>
+                <recipe>org.openrewrite.staticanalysis.DefaultComesLast</recipe>
+                <recipe>org.openrewrite.staticanalysis.EmptyBlock</recipe>
+                <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
+                <recipe>org.openrewrite.staticanalysis.ExplicitInitialization</recipe>
+                <recipe>org.openrewrite.staticanalysis.ExternalizableHasNoArgsConstructor</recipe>
+                <recipe>org.openrewrite.staticanalysis.FinalizePrivateFields</recipe>
+                <recipe>org.openrewrite.staticanalysis.FallThrough</recipe>
+                <recipe>org.openrewrite.staticanalysis.FinalClass</recipe>
+                <recipe>org.openrewrite.staticanalysis.FixStringFormatExpressions</recipe>
+                <recipe>org.openrewrite.staticanalysis.ForLoopIncrementInUpdate</recipe>
+                <recipe>org.openrewrite.staticanalysis.IndexOfChecksShouldUseAStartPosition</recipe>
+                <recipe>org.openrewrite.staticanalysis.IndexOfReplaceableByContains</recipe>
+                <recipe>org.openrewrite.staticanalysis.IndexOfShouldNotCompareGreaterThanZero</recipe>
+                <recipe>org.openrewrite.staticanalysis.InlineVariable</recipe>
+                <recipe>org.openrewrite.staticanalysis.IsEmptyCallOnCollections</recipe>
+                <recipe>org.openrewrite.staticanalysis.LambdaBlockToExpression</recipe>
+                <recipe>org.openrewrite.staticanalysis.MethodNameCasing</recipe>
+                <recipe>org.openrewrite.staticanalysis.MinimumSwitchCases</recipe>
+                <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
+                <recipe>org.openrewrite.staticanalysis.MultipleVariableDeclarations</recipe>
+                <recipe>org.openrewrite.staticanalysis.NeedBraces</recipe>
+                <recipe>org.openrewrite.staticanalysis.NestedEnumsAreNotStatic</recipe>
+                <recipe>org.openrewrite.staticanalysis.NewStringBuilderBufferWithCharArgument</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoDoubleBraceInitialization</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoEmptyCollectionWithRawType</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoEqualityInForCondition</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoFinalizer</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoRedundantJumpStatements</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoToStringOnStringType</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoValueOfOnStringType</recipe>
+                <recipe>org.openrewrite.staticanalysis.ObjectFinalizeCallsSuper</recipe>
+                <recipe>org.openrewrite.staticanalysis.PrimitiveWrapperClassConstructorToValueOf</recipe>
+                <recipe>org.openrewrite.staticanalysis.RedundantFileCreation</recipe>
+                <recipe>org.openrewrite.staticanalysis.RemoveExtraSemicolons</recipe>
+                <recipe>org.openrewrite.staticanalysis.RenameLocalVariablesToCamelCase</recipe>
+                <recipe>org.openrewrite.staticanalysis.RenameMethodsNamedHashcodeEqualOrTostring</recipe>
+                <!-- clashes with code style because it removes leading underscore -->
+                <!--recipe>org.openrewrite.staticanalysis.RenamePrivateFieldsToCamelCase</recipe-->
+                <recipe>org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference</recipe>
+                <recipe>org.openrewrite.staticanalysis.ReplaceStringBuilderWithString</recipe>
+                <recipe>org.openrewrite.staticanalysis.SimplifyBooleanExpression</recipe>
+                <recipe>org.openrewrite.staticanalysis.SimplifyBooleanReturn</recipe>
+                <recipe>org.openrewrite.staticanalysis.StaticMethodNotFinal</recipe>
+                <recipe>org.openrewrite.staticanalysis.StringLiteralEquality</recipe>
+                <recipe>org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources</recipe>
+                <recipe>org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments</recipe>
+                <recipe>org.openrewrite.staticanalysis.UnnecessaryParentheses</recipe>
+                <recipe>org.openrewrite.staticanalysis.UnnecessaryPrimitiveAnnotations</recipe>
+                <recipe>org.openrewrite.staticanalysis.UpperCaseLiteralSuffixes</recipe>
+                <recipe>org.openrewrite.staticanalysis.UseDiamondOperator</recipe>
+                <recipe>org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations</recipe>
+                <recipe>org.openrewrite.staticanalysis.WhileInsteadOfFor</recipe>
+                <recipe>org.openrewrite.staticanalysis.WriteOctalValuesAsDecimal</recipe>
+
+                <!-- prefer assertj -->
+                <recipe>org.openrewrite.java.testing.assertj.Assertj</recipe>
+
+
+              </activeRecipes>
+              <failOnDryRunResults>true</failOnDryRunResults>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>1.4.2</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-testing-frameworks</artifactId>
+                <version>2.6.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
