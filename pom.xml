@@ -373,7 +373,8 @@ tools.jackson.core.*;version=${project.version}
                 <recipe>org.openrewrite.staticanalysis.WriteOctalValuesAsDecimal</recipe>
 
                 <!-- prefer assertj -->
-                <recipe>org.openrewrite.java.testing.assertj.Assertj</recipe>
+                <!-- too resource intensive at the moment?! -->
+                <!--recipe>org.openrewrite.java.testing.assertj.Assertj</recipe-->
 
 
               </activeRecipes>
