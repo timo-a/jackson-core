@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  upload-patch:
+  combined-upload-and-comment:
     runs-on: ubuntu-latest
     env:
       # https://docs.github.com/en/actions/reference/authentication-in-a-workflow#permissions-for-the-github_token
