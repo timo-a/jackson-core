@@ -43,14 +43,34 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ github.event.workflow_run.id }}
       - name: Read pr_number.txt
+        # PR_NUMBER for google, CI_PULL_REQUEST for review dog
         run: |
           PR_NUMBER=$(cat pr_number.txt)
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "CI_PULL_REQUEST=$PR_NUMBER" >> $GITHUB_ENV
           rm pr_number.txt
 
       # Post suggestions as a comment on the PR
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: OpenRewrite suggestions
+          reviewdog_flags: tee
+
+      # now let's try the same thing with google code suggester
+      # Download the patch
+      - uses: actions/download-artifact@v4
+        with:
+          name: patch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Apply patch
+        run: |
+          git apply git-diff.patch --allow-empty
+          rm git-diff.patch
+
       - uses: googleapis/code-suggester@v4
         with:
           command: review
           pull_number: ${{ env.PR_NUMBER }}
           git_dir: '.'
+
