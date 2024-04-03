@@ -1,0 +1,85 @@
+# Description: This workflow runs OpenRewrite recipes against opened pull request and upload the patch.
+# Since this pull request receives untrusted code, we should **NOT** have any secrets in the environment.
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+---
+name: freerider-pr
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - master
+      - 2.[0-9]+
+      - 3.[0-9]+
+      - feature/suggestions
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  post-suggestions:
+    runs-on: ubuntu-latest
+    env:
+      # https://docs.github.com/en/actions/reference/authentication-in-a-workflow#permissions-for-the-github_token
+      ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 10
+    steps:
+      # wait for other workflow to upload the artifacts
+      - uses: GuillaumeFalourd/wait-sleep-action@v1
+        with:
+          time: '2m' # for 2 minutes
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.workflow_run.head_branch}}
+          repository: ${{github.event.workflow_run.head_repository.full_name}}
+
+      # Download the patch
+      - uses: actions/download-artifact@v4
+        with:
+          name: patch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Apply patch
+        run: |
+          git apply git-diff_combined.patch --allow-empty
+          rm git-diff_combined.patch
+
+      # Download the PR number
+      - uses: actions/download-artifact@v4
+        with:
+          name: pr_number_combined
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Read pr_number.txt
+        # PR_NUMBER for google, CI_PULL_REQUEST for review dog
+        run: |
+          PR_NUMBER=$(cat pr_number_combined.txt)
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+          echo "CI_PULL_REQUEST=$PR_NUMBER" >> $GITHUB_ENV
+          rm pr_number_combined.txt
+
+      # Post suggestions as a comment on the PR
+      - uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: OpenRewrite suggestions free rider
+          reviewdog_flags: tee
+
+      # now let's try the same thing with google code suggester
+      # Download the patch
+      - uses: actions/download-artifact@v4
+        with:
+          name: patch
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Apply patch
+        run: |
+          git apply git-diff_combined.patch --allow-empty
+          rm git-diff_combined.patch
+
+      - uses: googleapis/code-suggester@v4
+        with:
+          command: review
+          pull_number: ${{ env.PR_NUMBER }}
+          git_dir: '.'
+
