@@ -28,7 +28,7 @@ jobs:
       # wait for other workflow to upload the artifacts
       - uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '2m' # for 2 minutes
+          time: '4m' # for 2 minutes
       - uses: actions/checkout@v4
         with:
           ref: ${{github.event.workflow_run.head_branch}}
