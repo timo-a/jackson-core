@@ -54,7 +54,7 @@ jobs:
       - uses: reviewdog/action-suggester@v1
         with:
           tool_name: OpenRewrite suggestions
-          reviewdog_flags: tee
+          reviewdog_flags: "-tee -log-level=debug"
 
       # now let's try the same thing with google code suggester
       # Download the patch
