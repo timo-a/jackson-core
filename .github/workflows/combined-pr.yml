@@ -35,31 +35,14 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      # Capture the PR number
-      # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#using-data-from-the-triggering-workflow
-      - name: Create pr_number.txt
-        run: echo "${{ github.event.number }}" > pr_number_combined.txt
-      - uses: actions/upload-artifact@v4
-        with:
-          name: pr_number_combined
-          path: pr_number_combined.txt
-      - name: Remove pr_number.txt
-        run: rm -f pr_number_combined.txt
-
       # Execute recipes
       - name: Apply OpenRewrite recipes
         run: mvn --activate-profiles openrewrite org.openrewrite.maven:rewrite-maven-plugin:run
 
-      # Download the PR number
-      - uses: actions/download-artifact@v4
-        with:
-          name: pr_number_combined
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
-      - name: Read pr_number.txt
+      - name: Save pr number
         # PR_NUMBER for google, CI_PULL_REQUEST for review dog
         run: |
-          PR_NUMBER=$(cat pr_number_combined.txt)
+          PR_NUMBER=${{ github.event.number }}
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
           echo "CI_PULL_REQUEST=$PR_NUMBER" >> $GITHUB_ENV
           rm pr_number_combined.txt
