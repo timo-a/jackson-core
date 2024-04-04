@@ -45,7 +45,6 @@ jobs:
           PR_NUMBER=${{ github.event.number }}
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
           echo "CI_PULL_REQUEST=$PR_NUMBER" >> $GITHUB_ENV
-          rm pr_number_combined.txt
 
       # Post suggestions as a comment on the PR
       - uses: reviewdog/action-suggester@v1
