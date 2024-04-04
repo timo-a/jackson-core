@@ -50,17 +50,6 @@ jobs:
       - name: Apply OpenRewrite recipes
         run: mvn --activate-profiles openrewrite org.openrewrite.maven:rewrite-maven-plugin:run
 
-      # Capture the diff
-      - name: Create patch
-        run: |
-          git diff | tee git-diff.patch
-
-      # Download the patch
-      - name: Apply patch
-        run: |
-          git apply git-diff.patch --allow-empty
-          rm git-diff.patch
-
       # Download the PR number
       - uses: actions/download-artifact@v4
         with:
@@ -82,20 +71,8 @@ jobs:
           reviewdog_flags: tee
 
       # now let's try the same thing with google code suggester
-      # Download the patch
-      - uses: actions/download-artifact@v4
-        with:
-          name: patch
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
-      - name: Apply patch
-        run: |
-          git apply git-diff_combined.patch --allow-empty
-          rm git-diff_combined.patch
-
       - uses: googleapis/code-suggester@v4
         with:
           command: review
           pull_number: ${{ env.PR_NUMBER }}
           git_dir: '.'
-
