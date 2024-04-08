@@ -28,7 +28,7 @@ jobs:
       # wait for other workflow to upload the artifacts
       - uses: GuillaumeFalourd/wait-sleep-action@v1
         with:
-          time: '4m' # for 2 minutes
+          time: '1m' # for 1 minute
       - uses: actions/checkout@v4
         with:
           ref: ${{github.event.workflow_run.head_branch}}
@@ -42,7 +42,8 @@ jobs:
         with:
           name: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          #hardcoded, just imagine we would take the latest rum id from receive-pr here
+          run-id: 8607543448
       - name: Apply patch
         run: |
           git apply git-diff.patch --allow-empty
@@ -74,7 +75,7 @@ jobs:
         with:
           name: patch
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: 8607543448
       - name: Apply patch
         run: |
           git apply git-diff.patch --allow-empty
