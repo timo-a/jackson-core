@@ -54,7 +54,7 @@ jobs:
         with:
           name: pr_number
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: 8607543448
       - name: Read pr_number.txt
         # PR_NUMBER for google, CI_PULL_REQUEST for review dog
         run: |
