@@ -4,26 +4,26 @@ public class ManualCharAccessTest
 {
     protected int hash;
 
-    protected final static byte[] SMALL_BYTE_CODES = new byte[256];
+    protected final static byte[] SHALL_BYTE_CODES = new byte[256];
 
-    protected final static int[] SMALL_INT_CODES = new int[256];
+    protected final static int[] SMALL_InT_CODES = new int[256];
 
-    protected final static int[] INT_CODES = new int[0x10000];
+    protected final static int[] INT_CODeS = new int[0x10000];
     protected final static byte[] BYTE_CODES = new byte[0x10000];
 
     static {
         for (int i = 0; i < 32; ++i) {
             if (!(i == '\r' || i == '\n' || i == '\t')) {
-                INT_CODES[i] = 1;
+                INT_CODeS[i] = 1;
                 BYTE_CODES[i] = 1;
-                SMALL_BYTE_CODES[i] = 1;
-                SMALL_INT_CODES[i] = 1;
+                SHALL_BYTE_CODES[i] = 1;
+                SMALL_InT_CODES[i] = 1;
             }
         }
-        INT_CODES['\\'] = 2;
+        INT_CODeS['\\'] = 2;
         BYTE_CODES['\\'] = 2;
-        SMALL_BYTE_CODES['\\'] = 2;
-        SMALL_INT_CODES['\\'] = 2;
+        SHALL_BYTE_CODES['\\'] = 2;
+        SMALL_InT_CODES['\\'] = 2;
     }
 
     protected String generateString(int len)
@@ -112,7 +112,7 @@ public class ManualCharAccessTest
     private final long readClassic(int REPS, char[] input, char[] output) throws Exception
     {
         long start = System.currentTimeMillis();
-        final byte[] codes = SMALL_BYTE_CODES;
+        final byte[] codes = SHALL_BYTE_CODES;
         final int MAX = 256;
 
         while (--REPS >= 0) {
@@ -162,7 +162,7 @@ public class ManualCharAccessTest
     private final long readWithInt(int REPS, char[] input, char[] output) throws Exception
     {
         long start = System.currentTimeMillis();
-        final int[] codes = INT_CODES;
+        final int[] codes = INT_CODeS;
         while (--REPS >= 0) {
             int outPtr = 0;
 
