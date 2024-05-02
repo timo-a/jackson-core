@@ -1,12 +1,13 @@
 package com.fasterxml.jackson.core.io.schubfach;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Random;
+
+import org.junit.jupiter.api.Test;
 
 import static com.fasterxml.jackson.core.io.schubfach.DoubleToDecimalChecker.*;
 import static java.lang.Double.longBitsToDouble;
 import static java.lang.StrictMath.scalb;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DoubleToDecimalTest {

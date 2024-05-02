@@ -2,9 +2,9 @@ package com.fasterxml.jackson.core.io.doubleparser;
 
 import ch.randelshofer.fastdoubleparser.JavaDoubleParser;
 import ch.randelshofer.fastdoubleparser.JavaFloatParser;
-import org.junit.jupiter.api.Test;
-
 import java.util.Random;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

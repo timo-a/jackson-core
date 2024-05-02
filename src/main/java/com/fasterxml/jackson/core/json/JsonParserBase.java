@@ -3,7 +3,6 @@ package com.fasterxml.jackson.core.json;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.core.JsonParser.NumberTypeFP;
 import com.fasterxml.jackson.core.base.ParserBase;
 import com.fasterxml.jackson.core.io.CharTypes;
 import com.fasterxml.jackson.core.io.IOContext;
@@ -16,7 +15,7 @@ import com.fasterxml.jackson.core.util.JacksonFeatureSet;
  * @since 2.17
  */
 public abstract class JsonParserBase
-    extends ParserBase
+        extends ParserBase
 {
     @SuppressWarnings("deprecation")
     protected final static int FEAT_MASK_TRAILING_COMMA = Feature.ALLOW_TRAILING_COMMA.getMask();

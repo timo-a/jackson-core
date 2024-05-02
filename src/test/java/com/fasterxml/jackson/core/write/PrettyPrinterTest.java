@@ -1,19 +1,15 @@
 package com.fasterxml.jackson.core.write;
 
+import java.io.*;
+
+import org.junit.jupiter.api.Test;
+
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.io.SerializedString;
-import com.fasterxml.jackson.core.util.DefaultIndenter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.core.util.MinimalPrettyPrinter;
-import com.fasterxml.jackson.core.util.Separators;
-import com.fasterxml.jackson.core.util.Separators.Spacing;
-
-import java.io.*;
+import com.fasterxml.jackson.core.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * Set of basic unit tests for verifying that indenting

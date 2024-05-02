@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.core.io;
 
 import ch.randelshofer.fastdoubleparser.JavaBigIntegerParser;
-
 import java.math.BigInteger;
 
 import static com.fasterxml.jackson.core.io.BigDecimalParser.MAX_CHARS_TO_REPORT;

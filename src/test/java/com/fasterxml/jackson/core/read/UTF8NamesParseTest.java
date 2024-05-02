@@ -1,23 +1,22 @@
 package com.fasterxml.jackson.core.read;
 
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.core.io.SerializedString;
-
 import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.io.SerializedString;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Set of basic unit tests for verifying that the basic parser
  * functionality works as expected.
  */
 public class UTF8NamesParseTest
-    extends JUnit5TestBase
+        extends JUnit5TestBase
 {
     final static String[] UTF8_2BYTE_STRINGS = new String[] {
         // This may look funny, but UTF8 scanner has fairly elaborate decoding

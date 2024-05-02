@@ -3,9 +3,9 @@ package com.fasterxml.jackson.core.sym;
 import java.io.IOException;
 import java.util.HashSet;
 
-import com.fasterxml.jackson.core.*;
-
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 // Tests to guarad against [core#213]: does not verify symbol tables
 // directly but only indirect issue(s).
 public class SymbolsViaParserTest
-    extends com.fasterxml.jackson.core.JUnit5TestBase
+        extends com.fasterxml.jackson.core.JUnit5TestBase
 {
     // for [jackson-core#213]
     @Test

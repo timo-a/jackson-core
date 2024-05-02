@@ -2,7 +2,6 @@ package com.fasterxml.jackson.core.io;
 
 import ch.randelshofer.fastdoubleparser.JavaDoubleParser;
 import ch.randelshofer.fastdoubleparser.JavaFloatParser;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.regex.Pattern;

@@ -3,9 +3,9 @@ package com.fasterxml.jackson.core.sym;
 import java.io.IOException;
 import java.util.*;
 
-import com.fasterxml.jackson.core.*;
-
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.*;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * sources, however.
  */
 public class TestHashCollisionChars
-    extends JUnit5TestBase
+        extends JUnit5TestBase
 {
     // // // And then a nastier variant; collisions generated using
     // // // CollisionGenerator

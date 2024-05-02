@@ -1,15 +1,15 @@
 package com.fasterxml.jackson.core.json.async;
 
-import com.fasterxml.jackson.core.async.ByteBufferFeeder;
-import com.fasterxml.jackson.core.async.NonBlockingInputFeeder;
-import com.fasterxml.jackson.core.io.IOContext;
-import com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizer;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
+
+import com.fasterxml.jackson.core.async.ByteBufferFeeder;
+import com.fasterxml.jackson.core.async.NonBlockingInputFeeder;
+import com.fasterxml.jackson.core.io.IOContext;
+import com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizer;
 
 /**
  * Non-blocking parser implementation for JSON content that takes its input
@@ -21,8 +21,8 @@ import java.nio.channels.WritableByteChannel;
  * @since 2.14
  */
 public class NonBlockingByteBufferJsonParser
-    extends NonBlockingUtf8JsonParserBase
-    implements ByteBufferFeeder
+        extends NonBlockingUtf8JsonParserBase
+        implements ByteBufferFeeder
 {
     private ByteBuffer _inputBuffer = ByteBuffer.wrap(NO_BYTES);
 

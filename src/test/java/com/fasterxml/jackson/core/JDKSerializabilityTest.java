@@ -5,9 +5,9 @@ import java.io.*;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.io.ContentReference;
-import com.fasterxml.jackson.core.util.RecyclerPool;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.core.util.JsonRecyclerPools;
+import com.fasterxml.jackson.core.util.RecyclerPool;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for [core#31] (https://github.com/FasterXML/jackson-core/issues/31)
  */
 class JDKSerializabilityTest
-    extends JUnit5TestBase
+        extends JUnit5TestBase
 {
     /*
     /**********************************************************************

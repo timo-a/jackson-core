@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.core.io;
 
 import ch.randelshofer.fastdoubleparser.JavaBigDecimalParser;
-
 import java.math.BigDecimal;
 
 /**

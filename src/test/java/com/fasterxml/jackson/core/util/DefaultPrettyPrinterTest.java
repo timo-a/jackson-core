@@ -3,12 +3,11 @@ package com.fasterxml.jackson.core.util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
-
 import org.assertj.core.api.ThrowingConsumer;
 
-import com.fasterxml.jackson.core.*;
-
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.util.Separators.Spacing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

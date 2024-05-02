@@ -1,5 +1,7 @@
 package com.fasterxml.jackson.core.json.async;
 
+import java.io.IOException;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.io.CharTypes;
@@ -7,8 +9,6 @@ import com.fasterxml.jackson.core.io.IOContext;
 import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.sym.ByteQuadsCanonicalizer;
 import com.fasterxml.jackson.core.util.VersionUtil;
-
-import java.io.IOException;
 
 /**
  * Non-blocking parser base implementation for JSON content.
@@ -19,7 +19,7 @@ import java.io.IOException;
  * @since 2.9
  */
 public abstract class NonBlockingUtf8JsonParserBase
-    extends NonBlockingJsonParserBase
+        extends NonBlockingJsonParserBase
 {
     @SuppressWarnings("deprecation")
     private final static int FEAT_MASK_TRAILING_COMMA = Feature.ALLOW_TRAILING_COMMA.getMask();

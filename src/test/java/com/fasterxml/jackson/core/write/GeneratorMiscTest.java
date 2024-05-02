@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.concurrent.atomic.*;
 
-import com.fasterxml.jackson.core.*;
-
 import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.core.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SuppressWarnings("resource")
 public class GeneratorMiscTest
-    extends com.fasterxml.jackson.core.JUnit5TestBase
+        extends com.fasterxml.jackson.core.JUnit5TestBase
 {
     private final JsonFactory JSON_F = new JsonFactory();
 
