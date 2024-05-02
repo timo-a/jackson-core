@@ -316,4 +316,36 @@ com.fasterxml.jackson.core.*;version=${project.version}
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>openrewrite</id>
+      <!-- `mvn -P openrewrite org.openrewrite.maven:rewrite-maven-plugin:run` -->
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>5.29.0</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.java.OrderImports</recipe>
+              </activeRecipes>
+              <activeStyles>
+                <style>com.yourorg.JacksonImportStyle</style>
+              </activeStyles>
+              <failOnDryRunResults>true</failOnDryRunResults>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>com.yourorg</groupId>
+                <artifactId>rewrite-recipe-starter</artifactId>
+                <version>0.1.0-SNAPSHOT</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
