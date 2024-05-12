@@ -39,7 +39,7 @@ class NumberDeferredReadTest
         try (JsonParser p = createParser(jsonFactory(), mode, " 12345 ")) {
             assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
             assertEquals(Integer.valueOf(12345), p.getNumberValueDeferred());
-            assertEquals(NumberType.INT, p.getNumberType());
+            assertEquals(JsonParser.NumberType.INT, p.getNumberType());
             assertNull(p.nextToken());
         }
     }
@@ -59,7 +59,7 @@ class NumberDeferredReadTest
         try (JsonParser p = createParser(jsonFactory(), mode, " "+value+" ")) {
             assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
             assertEquals(Long.valueOf(value), p.getNumberValueDeferred());
-            assertEquals(NumberType.LONG, p.getNumberType());
+            assertEquals(JsonParser.NumberType.LONG, p.getNumberType());
             assertNull(p.nextToken());
         }
     }
@@ -78,7 +78,7 @@ class NumberDeferredReadTest
         BigInteger value = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.TEN);
         try (JsonParser p = createParser(jsonFactory(), mode, " "+value+" ")) {
             assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
-            assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+            assertEquals(JsonParser.NumberType.BIG_INTEGER, p.getNumberType());
             Object nr = p.getNumberValueDeferred();
             assertEquals(String.class, nr.getClass());
             assertEquals(value.toString(), nr);
@@ -120,7 +120,7 @@ class NumberDeferredReadTest
             // But if forced to, we'll get BigInteger
             assertEquals(value, p.getDecimalValue());
             assertEquals(value, p.getNumberValueDeferred());
-            assertEquals(NumberType.BIG_DECIMAL, p.getNumberType());
+            assertEquals(JsonParser.NumberType.BIG_DECIMAL, p.getNumberType());
         }
 
         try (JsonParser p = createParser(jsonFactory(), mode, " 0.25 ")) {
@@ -134,7 +134,7 @@ class NumberDeferredReadTest
             // But if forced to, we'll get BigInteger
             assertEquals(value, p.getDoubleValue());
             assertEquals(value, p.getNumberValueDeferred());
-            assertEquals(NumberType.DOUBLE, p.getNumberType());
+            assertEquals(JsonParser.NumberType.DOUBLE, p.getNumberType());
         }
 
         try (JsonParser p = createParser(jsonFactory(), mode, " 0.25 ")) {
@@ -148,7 +148,7 @@ class NumberDeferredReadTest
             // But if forced to, we'll get BigInteger
             assertEquals(value, p.getFloatValue());
             assertEquals(value, p.getNumberValueDeferred());
-            assertEquals(NumberType.FLOAT, p.getNumberType());
+            assertEquals(JsonParser.NumberType.FLOAT, p.getNumberType());
         }
     }
 }

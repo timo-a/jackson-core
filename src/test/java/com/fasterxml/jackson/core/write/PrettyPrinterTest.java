@@ -268,7 +268,7 @@ class PrettyPrinterTest
         JsonGenerator gen = new JsonFactory().createGenerator(sw);
         Separators separators = Separators.createDefaultInstance()
                 .withObjectFieldValueSeparator('=')
-                .withObjectFieldValueSpacing(Spacing.NONE)
+                .withObjectFieldValueSpacing(Separators.Spacing.NONE)
                 .withObjectEntrySeparator(';')
                 .withArrayValueSeparator('|');
         DefaultPrettyPrinter pp = new DefaultPrettyPrinter(separators);

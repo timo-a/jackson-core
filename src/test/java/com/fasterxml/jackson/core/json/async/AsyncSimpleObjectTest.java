@@ -150,14 +150,14 @@ class AsyncSimpleObjectTest extends AsyncTestBase
         assertToken(JsonToken.FIELD_NAME, r.nextToken());
         assertEquals("i1", r.currentText());
         assertToken(JsonToken.VALUE_NUMBER_INT, r.nextToken());
-        assertEquals(NumberType.INT, r.getNumberType());
+        assertEquals(JsonParser.NumberType.INT, r.getNumberType());
         assertEquals(NUMBER_EXP_I, r.getIntValue());
         assertEquals((double)NUMBER_EXP_I, r.getDoubleValue());
 
         assertToken(JsonToken.FIELD_NAME, r.nextToken());
         assertEquals("doubley", r.currentText());
         assertToken(JsonToken.VALUE_NUMBER_FLOAT, r.nextToken());
-        assertEquals(NumberType.DOUBLE, r.getNumberType());
+        assertEquals(JsonParser.NumberType.DOUBLE, r.getNumberType());
         assertEquals(NUMBER_EXP_D, r.getDoubleValue());
         assertEquals((long) NUMBER_EXP_D, r.getLongValue());
 
@@ -165,7 +165,7 @@ class AsyncSimpleObjectTest extends AsyncTestBase
         assertEquals("biggieDecimal", r.currentText());
         assertToken(JsonToken.VALUE_NUMBER_FLOAT, r.nextToken());
         // can't really tell double/BigDecimal apart in plain json
-        assertEquals(NumberType.DOUBLE, r.getNumberType());
+        assertEquals(JsonParser.NumberType.DOUBLE, r.getNumberType());
         assertEquals(NUMBER_EXP_BD, r.getDecimalValue());
         assertEquals(""+NUMBER_EXP_BD, r.currentText());
 

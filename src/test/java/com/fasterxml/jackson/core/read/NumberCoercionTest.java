@@ -192,7 +192,7 @@ class NumberCoercionTest extends JUnit5TestBase
             BigInteger big = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.TEN);
             try (JsonParser p = createParser(mode, String.valueOf(big))) {
                 assertToken(JsonToken.VALUE_NUMBER_INT, p.nextToken());
-                assertEquals(NumberType.BIG_INTEGER, p.getNumberType());
+                assertEquals(JsonParser.NumberType.BIG_INTEGER, p.getNumberType());
                 assertEquals(big, p.getBigIntegerValue());
                 assertEquals(big, p.getNumberValue());
                 try {
