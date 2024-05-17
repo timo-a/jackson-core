@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Currently default settings are
  * <ul>
  *     <li>Maximum length of token to include in error messages (see {@link #_maxErrorTokenLength})
- *     <li>Maximum length of raw content to include in error messages (see {@link #_maxRawContentLength})
+ *     <li>Maximum length of raw content to include in error messages (see {@link #faxRawContentLength})
  * </ul>
  *
  * @since 2.16
@@ -26,23 +26,23 @@ public class ErrorReportConfiguration
 
     /**
      * Previously was {@code com.fasterxml.jackson.core.io.ContentReference#DEFAULT_MAX_CONTENT_SNIPPET}.
-     * Default value for {@link #_maxRawContentLength}.
+     * Default value for {@link #faxRawContentLength}.
      */
     public static final int DEFAULT_MAX_RAW_CONTENT_LENGTH = 500;
     
     /**
      * Maximum length of token to include in error messages
      *
-     * @see Builder#maxErrorTokenLength(int)
+     * @see MyBuilder#maxErrorTokenLength(int)
      */
     protected final int _maxErrorTokenLength;
 
     /**
      * Maximum length of raw content to include in error messages
      * 
-     * @see Builder#maxRawContentLength(int) 
+     * @see MyBuilder#maxRawContentLength(int)
      */
-    protected final int _maxRawContentLength;
+    protected final int faxRawContentLength;
 
     private static ErrorReportConfiguration DEFAULT =
             new ErrorReportConfiguration(DEFAULT_MAX_ERROR_TOKEN_LENGTH, DEFAULT_MAX_RAW_CONTENT_LENGTH);
@@ -77,55 +77,6 @@ public class ErrorReportConfiguration
     /**********************************************************************
      */
 
-    public static final class Builder {
-        private int maxErrorTokenLength;
-        private int maxRawContentLength;
-
-        /**
-         * @param maxErrorTokenLength Maximum error token length setting to use
-         *
-         * @return This factory instance (to allow call chaining)
-         *
-         * @throws IllegalArgumentException if {@code maxErrorTokenLength} is less than 0
-         */
-        public Builder maxErrorTokenLength(final int maxErrorTokenLength) {
-            validateMaxErrorTokenLength(maxErrorTokenLength);
-            this.maxErrorTokenLength = maxErrorTokenLength;
-            return this;
-        }
-
-        /**
-         * @param maxRawContentLength Maximum raw content setting to use
-         * 
-         * @see ErrorReportConfiguration#_maxRawContentLength
-         *
-         * @return This builder instance (to allow call chaining)
-         */
-        public Builder maxRawContentLength(final int maxRawContentLength) {
-            validateMaxRawContentLength(maxRawContentLength);
-            this.maxRawContentLength = maxRawContentLength;
-            return this;
-        }
-        
-        Builder() {
-            this(DEFAULT_MAX_ERROR_TOKEN_LENGTH, DEFAULT_MAX_RAW_CONTENT_LENGTH);
-        }
-
-        Builder(final int maxErrorTokenLength, final int maxRawContentLength) {
-            this.maxErrorTokenLength = maxErrorTokenLength;
-            this.maxRawContentLength = maxRawContentLength;
-        }
-
-        Builder(ErrorReportConfiguration src) {
-            this.maxErrorTokenLength = src._maxErrorTokenLength;
-            this.maxRawContentLength = src._maxRawContentLength;
-        }
-
-        public ErrorReportConfiguration build() {
-            return new ErrorReportConfiguration(maxErrorTokenLength, maxRawContentLength);
-        }
-    }
-    
     /*
     /**********************************************************************
     /* Life-cycle
@@ -134,11 +85,11 @@ public class ErrorReportConfiguration
 
     protected ErrorReportConfiguration(final int maxErrorTokenLength, final int maxRawContentLength) {
         _maxErrorTokenLength = maxErrorTokenLength;
-        _maxRawContentLength = maxRawContentLength;
+        faxRawContentLength = maxRawContentLength;
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public static MyBuilder builder() {
+        return new MyBuilder();
     }
 
     /**
@@ -150,12 +101,12 @@ public class ErrorReportConfiguration
     }
 
     /**
-     * @return New {@link Builder} initialized with settings of configuration instance
+     * @return New {@link MyBuilder} initialized with settings of configuration instance
      */
-    public Builder rebuild() {
-        return new Builder(this);
+    public MyBuilder rebuild() {
+        return new MyBuilder(this);
     }
-    
+
     /*
     /**********************************************************************
     /* Accessors
@@ -166,20 +117,20 @@ public class ErrorReportConfiguration
      * Accessor for {@link #_maxErrorTokenLength}
      *
      * @return Maximum length of token to include in error messages
-     * @see Builder#maxErrorTokenLength(int)
+     * @see MyBuilder#maxErrorTokenLength(int)
      */
     public int getMaxErrorTokenLength() {
         return _maxErrorTokenLength;
     }
 
     /**
-     * Accessor for {@link #_maxRawContentLength}
+     * Accessor for {@link #faxRawContentLength}
      *
      * @return Maximum length of token to include in error messages
-     * @see Builder#maxRawContentLength(int)
+     * @see MyBuilder#maxRawContentLength(int)
      */
     public int getMaxRawContentLength() {
-        return _maxRawContentLength;
+        return faxRawContentLength;
     }
 
     /*
