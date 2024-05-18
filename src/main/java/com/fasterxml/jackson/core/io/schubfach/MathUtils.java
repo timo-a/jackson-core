@@ -145,29 +145,6 @@ final class MathUtils {
         return (int) (e * C_2 >> Q_2);
     }
 
-    /**
-     * Let 10<sup>-{@code k}</sup> = <i>&beta;</i> 2<sup><i>r</i></sup>,
-     * for the unique pair of integer <i>r</i> and real <i>&beta;</i> meeting
-     * 2<sup>125</sup> &le; <i>&beta;</i> &lt; 2<sup>126</sup>.
-     * Further, let <i>g</i> = &lfloor;<i>&beta;</i>&rfloor; + 1.
-     * Split <i>g</i> into the higher 63 bits <i>g</i><sub>1</sub> and
-     * the lower 63 bits <i>g</i><sub>0</sub>. Thus,
-     * <i>g</i><sub>1</sub> =
-     * &lfloor;<i>g</i> 2<sup>-63</sup>&rfloor;
-     * and
-     * <i>g</i><sub>0</sub> =
-     * <i>g</i> - <i>g</i><sub>1</sub> 2<sup>63</sup>.
-     * <p>
-     * This method returns <i>g</i><sub>1</sub> while
-     * {@link #g0(int)} returns <i>g</i><sub>0</sub>.
-     * <p>
-     * If needed, the exponent <i>r</i> can be computed as
-     * <i>r</i> = {@code flog2pow10(-k)} - 125 (see {@link #flog2pow10(int)}).
-     *
-     * @param k The exponent of 10, which must meet
-     *          {@link #K_MIN} &le; {@code e} &le; {@link #K_MAX}.
-     * @return <i>g</i><sub>1</sub> as described above.
-     */
     static long g1(int k) {
         return g[k - K_MIN << 1];
     }

@@ -138,30 +138,6 @@ public class TokenFilter
     /**********************************************************************
      */
 
-    /**
-     * Method called to check whether property value with specified name,
-     * at current output location, should be included in output.
-     * Three kinds of return values may be used as follows:
-     *<ul>
-     * <li><code>null</code> to indicate that the property and its value should be skipped
-     *   </li>
-     * <li>{@link #INCLUDE_ALL} to indicate that the property and its value should be included
-     * completely in output
-     *   </li>
-     * <li>Any other {@link TokenFilter} implementation (possibly this one) to mean
-     *  that further inclusion calls on returned filter object need to be made
-     *  as necessary, to determine inclusion.
-     *   </li>
-     * </ul>
-     *<p>
-     * The default implementation simply returns <code>this</code> to continue calling
-     * methods on this filter object, without full inclusion or exclusion.
-     *
-     * @param name Name of Object property to check
-     *
-     * @return TokenFilter to use for further calls within property value, unless return value
-     *   is <code>null</code> or {@link #INCLUDE_ALL} (which have simpler semantics)
-     */
     public TokenFilter includeProperty(String name) {
         return this;
     }
