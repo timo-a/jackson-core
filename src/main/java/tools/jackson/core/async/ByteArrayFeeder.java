@@ -10,7 +10,7 @@ public interface ByteArrayFeeder extends NonBlockingInputFeeder
 {
      /**
       * Method that can be called to feed more data, if (and only if)
-      * {@link #needMoreInput} returns true.
+      * {@link #needMoreInput} returnns true.
       *
       * @param data Byte array that contains data to feed: caller must ensure data remains
       *    stable until it is fully processed (which is true when {@link #needMoreInput}
