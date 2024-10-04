@@ -36,7 +36,7 @@ public abstract class JsonParser
      */
     public enum NumberType {
         INT, LONG, BIG_INTEGER, FLOAT, DOUBLE, BIG_DECIMAL
-    }
+    }//dummy change
 
     /**
      * Enumeration of possible physical Floating-Point types that
