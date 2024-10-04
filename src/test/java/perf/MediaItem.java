@@ -5,8 +5,10 @@ import java.io.StringWriter;
 import java.util.*;
 
 import tools.jackson.core.*;
+import java.util.stream.Collectors;
 import tools.jackson.core.json.JsonFactory;
 
+import java.util.stream.Stream;
 public class MediaItem
 {
     public enum Player { JAVA, FLASH;  }
@@ -60,8 +62,8 @@ public class MediaItem
             gen.writeNull();
         } else {
             gen.writeStartArray();
-            for (int i = 0, len = _photos.size(); i < len; ++i) {
-                _photos.get(i).write(gen);
+            for (Photo photo : _photos) {
+                photo.write(gen);
             }
             gen.writeEndArray();
         }
@@ -175,7 +177,7 @@ public class MediaItem
 
         public void addPerson(String p) {
             if (_persons == null) {
-                _persons = new ArrayList<>();
+                _persons = Stream.<String>empty().collect(Collectors.toCollection(ArrayList::new));
             }
             _persons.add(p);
         }
