@@ -5,10 +5,10 @@ import java.io.StringWriter;
 import java.util.*;
 
 import tools.jackson.core.*;
-import java.util.stream.Collectors;
 import tools.jackson.core.json.JsonFactory;
-
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 public class MediaItem
 {
     public enum Player { JAVA, FLASH;  }
