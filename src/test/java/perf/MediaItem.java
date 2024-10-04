@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 public class MediaItem
 {
     public enum Player { JAVA, FLASH;  }
+
     public enum Size { SMALL, LARGE; }
 
     private List<Photo> _photos;
