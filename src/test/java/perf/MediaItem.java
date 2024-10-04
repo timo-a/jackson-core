@@ -2,12 +2,12 @@ package perf;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.*;
 
 import tools.jackson.core.*;
 import tools.jackson.core.json.JsonFactory;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MediaItem
 {
